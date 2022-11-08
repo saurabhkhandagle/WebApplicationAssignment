@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProCatModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="ProCatEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="ProCatModel.Category" />
+    <EntitySet Name="Mappings" EntityType="ProCatModel.Mapping" />
+    <EntitySet Name="Products" EntityType="ProCatModel.Product" />
+    <EntitySet Name="sysdiagrams" EntityType="ProCatModel.sysdiagram" />
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CategoryType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ParentCategoryId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Mapping">
+    <Key>
+      <PropertyRef Name="Map_id" />
+    </Key>
+    <Property Name="Map_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProdID" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProdID" />
+    </Key>
+    <Property Name="ProdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProdName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="Decimal" Name="Price" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ParentId" Nullable="false" />
+    <Property Type="Int32" Name="ChidId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

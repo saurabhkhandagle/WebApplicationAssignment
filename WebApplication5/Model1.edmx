@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProCatModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ProCatModelStoreContainer">
+          <EntitySet Name="Category" EntityType="ProCatModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Mapping" EntityType="ProCatModel.Store.Mapping" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="ProCatModel.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="ProCatModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CategoryType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentCategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Mapping">
+          <Key>
+            <PropertyRef Name="Map_id" />
+          </Key>
+          <Property Name="Map_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProdID" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProdID" />
+          </Key>
+          <Property Name="ProdID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProdName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Price" Type="numeric" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="ChidId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProCatModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ProCatEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="ProCatModel.Category" />
+          <EntitySet Name="Mappings" EntityType="ProCatModel.Mapping" />
+          <EntitySet Name="Products" EntityType="ProCatModel.Product" />
+          <EntitySet Name="sysdiagrams" EntityType="ProCatModel.sysdiagram" />
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CategoryType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ParentCategoryId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Mapping">
+          <Key>
+            <PropertyRef Name="Map_id" />
+          </Key>
+          <Property Name="Map_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProdID" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProdID" />
+          </Key>
+          <Property Name="ProdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProdName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Decimal" Name="Price" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="ParentId" Nullable="false" />
+          <Property Type="Int32" Name="ChidId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProCatModelStoreContainer" CdmEntityContainer="ProCatEntities1">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ProCatModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+                <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mappings">
+            <EntityTypeMapping TypeName="ProCatModel.Mapping">
+              <MappingFragment StoreEntitySet="Mapping">
+                <ScalarProperty Name="Map_id" ColumnName="Map_id" />
+                <ScalarProperty Name="ProdID" ColumnName="ProdID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ProCatModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ChidId" ColumnName="ChidId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProdID" ColumnName="ProdID" />
+                <ScalarProperty Name="ProdName" ColumnName="ProdName" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProCatModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="ProCatModel.Category" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProCatModel.Mapping" Width="1.5" PointX="2.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProCatModel.Product" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProCatModel.sysdiagram" Width="1.5" PointX="2.75" PointY="3.75" Height="1.9802864583333335" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

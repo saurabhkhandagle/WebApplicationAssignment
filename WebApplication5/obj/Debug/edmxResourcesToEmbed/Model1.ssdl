@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProCatModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ProCatModelStoreContainer">
+    <EntitySet Name="Category" EntityType="ProCatModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Mapping" EntityType="ProCatModel.Store.Mapping" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Product" EntityType="ProCatModel.Store.Product" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="ProCatModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CategoryType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ParentCategoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="Mapping">
+    <Key>
+      <PropertyRef Name="Map_id" />
+    </Key>
+    <Property Name="Map_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProdID" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProdID" />
+    </Key>
+    <Property Name="ProdID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProdName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Price" Type="numeric" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="ChidId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+</Schema>
